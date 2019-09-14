@@ -11,7 +11,8 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-
+#include "SquareSynthVoice.h"
+#include "SquareSynthSound.h"
 //==============================================================================
 /**
 */
@@ -54,9 +55,15 @@ public:
     //==============================================================================
     void getStateInformation (MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
-
+    
+    
+    AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
+    AudioProcessorValueTreeState state;
 private:
-	AudioProcessorValueTreeState state;
+	//AudioProcessorValueTreeState state;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SquareSynthAudioProcessor)
+    
+    Synthesiser squareSynth;
+    SquareSynthVoice* myVoice;
 };

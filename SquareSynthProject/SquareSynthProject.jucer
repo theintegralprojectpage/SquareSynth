@@ -40,13 +40,13 @@
       <FILE id="ujwOE3" name="SquareSynthVoice.h" compile="0" resource="0"
             file="../SquareSynthVoice.h"/>
       <FILE id="BrKQXI" name="PluginEditor.h" compile="0" resource="0" file="../PluginEditor.h"/>
+      <FILE id="nZdlKq" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="../PluginProcessor.cpp"/>
       <FILE id="MS7jSs" name="PluginEditor.cpp" compile="1" resource="0"
             file="../PluginEditor.cpp"/>
       <FILE id="vh3U6U" name="PluginProcessor.h" compile="0" resource="0"
             file="../PluginProcessor.h"/>
     </GROUP>
-    <FILE id="nZdlKq" name="PluginProcessor.cpp" compile="1" resource="0"
-          file="../PluginProcessor.cpp"/>
   </MAINGROUP>
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX">

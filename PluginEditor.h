@@ -33,7 +33,7 @@ private:
     
     Slider attackParam;
     Slider decayParam;
-    Slider SustainParam;
+    Slider sustainParam;
     Slider releaseParam;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SquareSynthAudioProcessorEditor)

@@ -207,10 +207,10 @@ void SquareSynthAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBu
     {
         if (myVoice = dynamic_cast<SquareSynthVoice*>(squareSynth.getVoice(i)))
         {
-            myVoice->envelopeParams(state.getRawParameterValue("attack"));
-//                              tree.getRawParameterValue("decay"),
-//                              tree.getRawParameterValue("sustain"),
-//                              tree.getRawParameterValue("release"));
+            myVoice->envelopeParams(state.getRawParameterValue("attack"),
+                              state.getRawParameterValue("decay"),
+                              state.getRawParameterValue("sustain"),
+                              state.getRawParameterValue("release"));
 //
             myVoice->getOscType(state.getRawParameterValue("wavetype"));
             
@@ -284,6 +284,9 @@ AudioProcessorValueTreeState::ParameterLayout SquareSynthAudioProcessor::createP
     params.push_back(std::make_unique<AudioParameterFloat>("wavetype","WaveType", waveTypeParams, 0));
     
     params.push_back(std::make_unique<AudioParameterFloat>("attack", "Attack", NormalisableRange<float>(0.1f, 5000.0f), 0.1f));
+    params.push_back(std::make_unique<AudioParameterFloat>("decay", "Decay", NormalisableRange<float>(0.1f, 500.0f), 500.f));
+    params.push_back(std::make_unique<AudioParameterFloat>("sustain", "Sustain", NormalisableRange<float>(0.1f, 0.8f), 0.8f));
+    params.push_back(std::make_unique<AudioParameterFloat>("release", "Release", NormalisableRange<float>(0.1f, 5000.0f), 0.1f));
     
     return { params.begin(), params.end() };
 }

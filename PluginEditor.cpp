@@ -17,7 +17,16 @@ SquareSynthAudioProcessorEditor::SquareSynthAudioProcessorEditor (SquareSynthAud
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    setSize (400, 300);
+    setSize (200, 200);
+    
+    attackParam.setSliderStyle(Slider::SliderStyle::LinearVertical);
+    attackParam.setRange(0.1f, 5000.0f);
+    attackParam.setValue(0.1f);
+    attackParam.setTextBoxStyle(Slider::TextBoxBelow, true, 20.0, 10.0);
+    // attackParameter.addListener(this);
+    addAndMakeVisible(attackParam);
+    
+    attackState = std::make_unique< AudioProcessorValueTreeState::SliderAttachment>(processor.state, "attack", attackParam);
 }
 
 SquareSynthAudioProcessorEditor::~SquareSynthAudioProcessorEditor()
@@ -39,4 +48,6 @@ void SquareSynthAudioProcessorEditor::resized()
 {
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
+    //Rectangle<int> area = getBounds().reduced(40);
+    attackParam.setBounds(53, 50, 40, 100); 
 }

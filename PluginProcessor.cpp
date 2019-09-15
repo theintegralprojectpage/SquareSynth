@@ -53,7 +53,9 @@ SquareSynthAudioProcessor::SquareSynthAudioProcessor()
                        .withOutput ("Output", AudioChannelSet::stereo(), true)
                      #endif
                        ),
-state(*this, nullptr, "PARAMS", createParameterLayout())
+
+state(*this, nullptr, "PARAMS", createParameterLayout()),
+attackTime(0.1f)
 
 
 
@@ -205,7 +207,7 @@ void SquareSynthAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBu
     {
         if (myVoice = dynamic_cast<SquareSynthVoice*>(squareSynth.getVoice(i)))
         {
-//            myVoice->getParam(tree.getRawParameterValue("attack"),
+            myVoice->envelopeParams(state.getRawParameterValue("attack"));
 //                              tree.getRawParameterValue("decay"),
 //                              tree.getRawParameterValue("sustain"),
 //                              tree.getRawParameterValue("release"));
@@ -280,6 +282,8 @@ AudioProcessorValueTreeState::ParameterLayout SquareSynthAudioProcessor::createP
     
     NormalisableRange<float> waveTypeParams(0,2);
     params.push_back(std::make_unique<AudioParameterFloat>("wavetype","WaveType", waveTypeParams, 0));
+    
+    params.push_back(std::make_unique<AudioParameterFloat>("attack", "Attack", NormalisableRange<float>(0.1f, 5000.0f), 0.1f));
     
     return { params.begin(), params.end() };
 }

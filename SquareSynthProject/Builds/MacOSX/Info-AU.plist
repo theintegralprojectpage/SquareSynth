@@ -8,11 +8,11 @@
     <key>CFBundleIconFile</key>
     <string></string>
     <key>CFBundleIdentifier</key>
-    <string>com.yourcompany.SquareSynthProject</string>
+    <string>com.yourcompany.SquareSynth</string>
     <key>CFBundleName</key>
-    <string>SquareSynthProject</string>
+    <string>SquareSynth</string>
     <key>CFBundleDisplayName</key>
-    <string>SquareSynthProject</string>
+    <string>SquareSynth</string>
     <key>CFBundlePackageType</key>
     <string>BNDL</string>
     <key>CFBundleSignature</key>
@@ -29,11 +29,11 @@
     <array>
       <dict>
         <key>name</key>
-        <string>yourcompany: SquareSynthProject</string>
+        <string>yourcompany: SquareSynth</string>
         <key>description</key>
-        <string>SquareSynthProject</string>
+        <string>SquareSynth</string>
         <key>factoryFunction</key>
-        <string>SquareSynthProjectAUFactory</string>
+        <string>SquareSynthAUFactory</string>
         <key>manufacturer</key>
         <string>Manu</string>
         <key>type</key>

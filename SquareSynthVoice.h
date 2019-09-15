@@ -51,6 +51,14 @@ class SquareSynthVoice : public SynthesiserVoice
 	{
 		//TODO
 	}
+    
+    void envelopeParams(float* attack) //double* decay, double* sustain, double* release)
+    {
+        masterEnvelope.setAttack((double)*attack);
+//        masterEnvelope.setDecay(*decay);
+//        masterEnvelope.setSustain(*sustain);
+//        masterEnvelope.setRelease(*release);
+    }
 
 	void controllerMoved(int controllerNumber, int newControllerValue)
 	{
@@ -109,23 +117,27 @@ class SquareSynthVoice : public SynthesiserVoice
 	{
 		for (int i = 0; i < outputBuffer.getNumChannels(); i++)
 		{
-			for (int j = startSample; j < numSamples; j++)
+			for (int j = 0; j < numSamples; j++)
 			{
 				outputBuffer.addSample(i, j, renderOsc(0) * 0.25f);
 //                outputBuffer.addSample(i, j, renderOsc(1) * 0.25f);
 //                outputBuffer.addSample(i, j, renderOsc(2) * 0.25f);
 //                outputBuffer.addSample(i, j, renderOsc(3) * 0.25f);
 			}
+            startSample++;
 		}
 	}
 
 	//AudioProcessorValueTreeState processor;
   private:
-	  maxiOsc osc1, osc2, osc3, osc4;
-	  int waveFormSelection1, waveFormSelection2, waveFormSelection3, waveFormSelection4;
-	  maxiEnv masterEnvelope;
-	  int inFrequencyMIDI;
-	  int inVelocityMIDI;
+    maxiOsc osc1, osc2, osc3, osc4;
+    int waveFormSelection1, waveFormSelection2, waveFormSelection3, waveFormSelection4;
+    maxiEnv masterEnvelope;
+    int inFrequencyMIDI;
+    int inVelocityMIDI;
+    
+    
+    
 
 //   vector<maxiOsc> oscillators{ maxiOsc(), maxiOsc(), maxiOsc(), maxiOsc()};
 //     vector<string> courseTune { "courseTune1", "courseTune2", "courseTune3", "courseTune4" };

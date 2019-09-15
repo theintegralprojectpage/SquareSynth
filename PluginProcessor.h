@@ -59,6 +59,8 @@ public:
     
     AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
     AudioProcessorValueTreeState state;
+    
+    float attackTime;
 private:
 	//AudioProcessorValueTreeState state;
     //==============================================================================

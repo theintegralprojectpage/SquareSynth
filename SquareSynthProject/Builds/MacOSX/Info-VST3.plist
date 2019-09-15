@@ -8,11 +8,11 @@
     <key>CFBundleIconFile</key>
     <string></string>
     <key>CFBundleIdentifier</key>
-    <string>com.yourcompany.SquareSynthProject</string>
+    <string>com.yourcompany.SquareSynth</string>
     <key>CFBundleName</key>
-    <string>SquareSynthProject</string>
+    <string>SquareSynth</string>
     <key>CFBundleDisplayName</key>
-    <string>SquareSynthProject</string>
+    <string>SquareSynth</string>
     <key>CFBundlePackageType</key>
     <string>BNDL</string>
     <key>CFBundleSignature</key>

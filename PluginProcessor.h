@@ -66,4 +66,5 @@ private:
     
     Synthesiser squareSynth;
     SquareSynthVoice* myVoice;
+    double lastSampleRate;
 };

@@ -139,6 +139,9 @@ void SquareSynthAudioProcessor::prepareToPlay (double sampleRate, int samplesPer
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+    ignoreUnused(samplesPerBlock);
+    lastSampleRate = sampleRate;
+    squareSynth.setCurrentPlaybackSampleRate(lastSampleRate);
 }
 
 void SquareSynthAudioProcessor::releaseResources()

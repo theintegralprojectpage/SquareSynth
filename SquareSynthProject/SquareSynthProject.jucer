@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="Hku1Mn" name="SquareSynthProject" projectType="audioplug"
-              jucerVersion="5.4.4" pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn">
-  <MAINGROUP id="BZKJIh" name="SquareSynthProject">
+<JUCERPROJECT id="Hku1Mn" name="SquareSynth" projectType="audioplug" jucerVersion="5.4.4"
+              pluginCharacteristicsValue="pluginIsSynth,pluginWantsMidiIn">
+  <MAINGROUP id="BZKJIh" name="SquareSynth">
     <GROUP id="{A56B21D4-F9AD-E61D-A15A-FB851C9DCF11}" name="Source">
       <GROUP id="{16F370AD-50FE-B003-7D4E-8D01875BC916}" name="Maximilian">
         <GROUP id="{4AB0A129-A771-3473-6201-7BB24BAC1BD4}" name="libs">
@@ -35,8 +35,6 @@
         <FILE id="yeO4ox" name="stb_vorbis.c" compile="1" resource="0" file="../../../Development/Libraries/Maximilian/stb_vorbis.c"/>
         <FILE id="yjCq9O" name="stb_vorbis.h" compile="0" resource="0" file="../../../Development/Libraries/Maximilian/stb_vorbis.h"/>
       </GROUP>
-      <FILE id="MS7jSs" name="PluginEditor.cpp" compile="1" resource="0"
-            file="../PluginEditor.cpp"/>
       <FILE id="qxZKVZ" name="SquareSynthSound.h" compile="0" resource="0"
             file="../SquareSynthSound.h"/>
       <FILE id="ujwOE3" name="SquareSynthVoice.h" compile="0" resource="0"
@@ -44,6 +42,8 @@
       <FILE id="BrKQXI" name="PluginEditor.h" compile="0" resource="0" file="../PluginEditor.h"/>
       <FILE id="nZdlKq" name="PluginProcessor.cpp" compile="1" resource="0"
             file="../PluginProcessor.cpp"/>
+      <FILE id="MS7jSs" name="PluginEditor.cpp" compile="1" resource="0"
+            file="../PluginEditor.cpp"/>
       <FILE id="vh3U6U" name="PluginProcessor.h" compile="0" resource="0"
             file="../PluginProcessor.h"/>
     </GROUP>

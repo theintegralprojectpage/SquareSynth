@@ -29,6 +29,7 @@ class SquareSynthVoice : public SynthesiserVoice
 		masterEnvelope.trigger = 1;
 		inFrequencyMIDI = MidiMessage::getMidiNoteInHertz(midiNoteNumber);
 		inVelocityMIDI = velocity;
+        DBG("level: " << inVelocityMIDI);
 	}
 
 	void stopNote(float velocity, bool allowTailOff)
@@ -51,6 +52,21 @@ class SquareSynthVoice : public SynthesiserVoice
 	{
 		//TODO
 	}
+    
+    void envelopeParams(float* attack, float* decay, float* sustain, float* release)
+    {
+        masterEnvelope.setAttack((double)*attack);
+        masterEnvelope.setDecay((double)*decay);
+        masterEnvelope.setSustain((double)*sustain);
+        masterEnvelope.setRelease((double)*release);
+        DBG("Attack: " << *attack);
+        DBG("decay: " << *decay);
+        DBG("sustain: " << *sustain);
+        DBG("release: " << *release);
+
+        
+
+    }
 
 	void controllerMoved(int controllerNumber, int newControllerValue)
 	{
@@ -75,15 +91,16 @@ class SquareSynthVoice : public SynthesiserVoice
 	float renderOsc(int oscNum)
 	{
 		//TODO add the rest of processing chain, including a phase dial, gain manipulations, and filter
-		return getWaveForm(oscNum);
+		return masterEnvelope.adsr((double)getWaveForm(oscNum), masterEnvelope.trigger);
 	}
 
-	float getWaveForm(int oscNum)
+	double getWaveForm(int oscNum)
 	{
-		switch ((int)oscNum)
+        
+		switch (oscNum)
 		{
 		  case 0:
-			  return osc1.sinewave(inFrequencyMIDI + getFineTune(oscNum) + getCourseTune(oscNum));
+              return osc1.sinewave(inFrequencyMIDI + getFineTune(oscNum) + getCourseTune(oscNum));
 		  case 1:
 			  return osc1.square(inFrequencyMIDI + getFineTune(oscNum) + getCourseTune(oscNum));
 		  case 2:
@@ -93,6 +110,7 @@ class SquareSynthVoice : public SynthesiserVoice
 		  default:
 			  return osc1.sinewave(inFrequencyMIDI + getFineTune(oscNum) + getCourseTune(oscNum));
 		}
+        DBG("oscNum: " << oscNum);
 	}
 
 	int getFineTune(int oscNum)
@@ -107,25 +125,29 @@ class SquareSynthVoice : public SynthesiserVoice
 
 	void renderNextBlock(AudioBuffer<float> &outputBuffer, int startSample, int numSamples)
 	{
-		for (int i = 0; i < outputBuffer.getNumChannels(); i++)
+		for (int sample = 0; sample < numSamples; sample++)
 		{
-			for (int j = startSample; j < numSamples; j++)
+			for (int channel = 0; channel < outputBuffer.getNumChannels(); channel++)
 			{
-				outputBuffer.addSample(i, j, renderOsc(0) * 0.25f);
+				outputBuffer.addSample(channel, startSample, renderOsc(0));
 //                outputBuffer.addSample(i, j, renderOsc(1) * 0.25f);
 //                outputBuffer.addSample(i, j, renderOsc(2) * 0.25f);
 //                outputBuffer.addSample(i, j, renderOsc(3) * 0.25f);
 			}
+            startSample++;
 		}
 	}
 
 	//AudioProcessorValueTreeState processor;
   private:
-	  maxiOsc osc1, osc2, osc3, osc4;
-	  int waveFormSelection1, waveFormSelection2, waveFormSelection3, waveFormSelection4;
-	  maxiEnv masterEnvelope;
-	  int inFrequencyMIDI;
-	  int inVelocityMIDI;
+    maxiOsc osc1, osc2, osc3, osc4;
+    int waveFormSelection1, waveFormSelection2, waveFormSelection3, waveFormSelection4;
+    maxiEnv masterEnvelope;
+    double inFrequencyMIDI;
+    int inVelocityMIDI;
+//    double level;
+    
+    
 
 //   vector<maxiOsc> oscillators{ maxiOsc(), maxiOsc(), maxiOsc(), maxiOsc()};
 //     vector<string> courseTune { "courseTune1", "courseTune2", "courseTune3", "courseTune4" };

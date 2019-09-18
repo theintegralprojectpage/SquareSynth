@@ -94,9 +94,10 @@ class SquareSynthVoice : public SynthesiserVoice
 		return masterEnvelope.adsr((double)getWaveForm(oscNum), masterEnvelope.trigger);
 	}
 
-	float getWaveForm(int oscNum)
+	double getWaveForm(int oscNum)
 	{
-		switch ((int)oscNum)
+        
+		switch (oscNum)
 		{
 		  case 0:
               return osc1.sinewave(inFrequencyMIDI + getFineTune(oscNum) + getCourseTune(oscNum));
@@ -109,6 +110,7 @@ class SquareSynthVoice : public SynthesiserVoice
 		  default:
 			  return osc1.sinewave(inFrequencyMIDI + getFineTune(oscNum) + getCourseTune(oscNum));
 		}
+        DBG("oscNum: " << oscNum);
 	}
 
 	int getFineTune(int oscNum)
@@ -123,16 +125,16 @@ class SquareSynthVoice : public SynthesiserVoice
 
 	void renderNextBlock(AudioBuffer<float> &outputBuffer, int startSample, int numSamples)
 	{
-		for (int i = 0; i < outputBuffer.getNumChannels(); i++)
+		for (int sample = 0; sample < numSamples; sample++)
 		{
-			for (int j = startSample; j < numSamples; j++)
+			for (int channel = 0; channel < outputBuffer.getNumChannels(); channel++)
 			{
-				outputBuffer.addSample(i, j, renderOsc(0) * 0.25f);
+				outputBuffer.addSample(channel, startSample, renderOsc(0));
 //                outputBuffer.addSample(i, j, renderOsc(1) * 0.25f);
 //                outputBuffer.addSample(i, j, renderOsc(2) * 0.25f);
 //                outputBuffer.addSample(i, j, renderOsc(3) * 0.25f);
 			}
-            //startSample++;
+            startSample++;
 		}
 	}
 
@@ -141,7 +143,7 @@ class SquareSynthVoice : public SynthesiserVoice
     maxiOsc osc1, osc2, osc3, osc4;
     int waveFormSelection1, waveFormSelection2, waveFormSelection3, waveFormSelection4;
     maxiEnv masterEnvelope;
-    int inFrequencyMIDI;
+    double inFrequencyMIDI;
     int inVelocityMIDI;
 //    double level;
     

@@ -280,7 +280,7 @@ AudioProcessorValueTreeState::ParameterLayout SquareSynthAudioProcessor::createP
     //    params.push_back(AudioParameterInt("oscType3", "oscType3", 0, 3, 0));
     //    params.push_back(AudioParameterInt("oscType4", "oscType4", 0, 3, 0));
     
-    NormalisableRange<float> waveTypeParams(0,2);
+    NormalisableRange<float> waveTypeParams(0,3);
     params.push_back(std::make_unique<AudioParameterFloat>("wavetype","WaveType", waveTypeParams, 0));
     
     params.push_back(std::make_unique<AudioParameterFloat>("attack", "Attack", NormalisableRange<float>(0.1f, 5000.0f), 0.1f));

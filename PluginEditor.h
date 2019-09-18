@@ -35,6 +35,8 @@ private:
     Slider decayParam;
     Slider sustainParam;
     Slider releaseParam;
+    
+    ComboBox oscSelect;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SquareSynthAudioProcessorEditor)
 public:
@@ -42,4 +44,5 @@ public:
     std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> decayState;
     std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> sustainState;
     std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> releaseState;
+    std::unique_ptr <AudioProcessorValueTreeState::ComboBoxAttachment> oscSelectState;
 };

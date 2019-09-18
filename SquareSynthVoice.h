@@ -85,7 +85,7 @@ class SquareSynthVoice : public SynthesiserVoice
     
     void getOscType(float* select)
     {
-        
+        waveFormSelection1 = *select;
     }
 
 	float renderOsc(int oscNum)
@@ -129,7 +129,7 @@ class SquareSynthVoice : public SynthesiserVoice
 		{
 			for (int channel = 0; channel < outputBuffer.getNumChannels(); channel++)
 			{
-				outputBuffer.addSample(channel, startSample, renderOsc(0));
+				outputBuffer.addSample(channel, startSample, renderOsc(waveFormSelection1));
 //                outputBuffer.addSample(i, j, renderOsc(1) * 0.25f);
 //                outputBuffer.addSample(i, j, renderOsc(2) * 0.25f);
 //                outputBuffer.addSample(i, j, renderOsc(3) * 0.25f);

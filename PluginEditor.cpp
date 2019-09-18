@@ -61,10 +61,20 @@ SquareSynthAudioProcessorEditor::SquareSynthAudioProcessorEditor (SquareSynthAud
     addAndMakeVisible(&releaseParam);
     
     //===============================================================
+    oscSelect.addItem("Sine", 1);
+    oscSelect.addItem("Square", 2);
+    oscSelect.addItem("Triangle", 3);
+    oscSelect.addItem("Saw", 4);
+    
+    addAndMakeVisible(&oscSelect);
+    
+    //===============================================================
     attackState = std::make_unique< AudioProcessorValueTreeState::SliderAttachment>(processor.state, "attack", attackParam);
     decayState = std::make_unique< AudioProcessorValueTreeState::SliderAttachment>(processor.state, "decay", decayParam);
     sustainState = std::make_unique< AudioProcessorValueTreeState::SliderAttachment>(processor.state, "sustain", sustainParam);
     releaseState = std::make_unique< AudioProcessorValueTreeState::SliderAttachment>(processor.state, "release", releaseParam);
+    
+    oscSelectState = std::make_unique<AudioProcessorValueTreeState::ComboBoxAttachment>(processor.state, "wavetype", oscSelect);
 }
 
 SquareSynthAudioProcessorEditor::~SquareSynthAudioProcessorEditor()
@@ -91,4 +101,6 @@ void SquareSynthAudioProcessorEditor::resized()
     decayParam.setBounds(77, 50, 40, 100);
     sustainParam.setBounds(103, 50, 40, 100);
     releaseParam.setBounds(128, 50, 40, 100);
+    
+    oscSelect.setBounds(0, 0, 100, 100);
 }

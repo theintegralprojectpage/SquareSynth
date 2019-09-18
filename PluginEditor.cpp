@@ -102,5 +102,5 @@ void SquareSynthAudioProcessorEditor::resized()
     sustainParam.setBounds(103, 50, 40, 100);
     releaseParam.setBounds(128, 50, 40, 100);
     
-    oscSelect.setBounds(0, 0, 100, 100);
+    oscSelect.setBounds(0, 0, 50, 50);
 }

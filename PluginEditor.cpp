@@ -61,6 +61,8 @@ SquareSynthAudioProcessorEditor::SquareSynthAudioProcessorEditor (SquareSynthAud
     addAndMakeVisible(&releaseParam);
     
     //===============================================================
+    
+    //osc1 select combobox gui
     oscSelect.addItem("Sine", 1);
     oscSelect.addItem("Square", 2);
     oscSelect.addItem("Triangle", 3);

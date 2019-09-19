@@ -69,11 +69,11 @@ class SquareSynthVoice : public SynthesiserVoice
     }
     void getFineTune(float* oscNum)
     {
-        fineTune1 =  (double)*oscNum;
+        fineTune1 =  (int)*oscNum;
         DBG("fineTune" << fineTune1);
     }
     
-    int getCourseTune(int oscNum)
+    int getCourseTune(float oscNum)
     {
         return (oscNum);
     }

@@ -75,6 +75,7 @@ SquareSynthAudioProcessorEditor::SquareSynthAudioProcessorEditor (SquareSynthAud
     fineTuneParam.setRange(-100.0f, 100.0f);
     fineTuneParam.setValue(0.0f);
     fineTuneParam.setTextBoxStyle(Slider::TextBoxBelow, true, 20.0, 10.0);
+    fineTuneParam.setSliderStyle(Slider::RotaryVerticalDrag);
     
     addAndMakeVisible(&fineTuneParam);
     

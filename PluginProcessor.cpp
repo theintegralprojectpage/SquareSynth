@@ -220,6 +220,8 @@ void SquareSynthAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBu
             
             myVoice->getFineTune(state.getRawParameterValue("fineTune1"));
             
+            myVoice->getCourseTune(state.getRawParameterValue("courseTune1"));
+            
 //            myVoice->getFilterParams(tree.getRawParameterValue("filtercutoff"),
 //                                     tree.getRawParameterValue("filterres"));
         }

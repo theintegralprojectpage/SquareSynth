@@ -44,7 +44,7 @@
       allowLocationSimulation = "YES">
       <PathRunnable
          runnableDebuggingMode = "0"
-         FilePath = "/Users/benhaywood/Documents/Development/JUCE/extras/AudioPluginHost/Builds/MacOSX/build/Debug/AudioPluginHost.app">
+         FilePath = "/Applications/Ableton Live 10 Suite.app">
       </PathRunnable>
       <MacroExpansion>
          <BuildableReference

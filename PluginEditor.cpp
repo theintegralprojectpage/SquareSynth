@@ -71,6 +71,8 @@ SquareSynthAudioProcessorEditor::SquareSynthAudioProcessorEditor (SquareSynthAud
     addAndMakeVisible(&oscSelect);
     
     //================================================================
+    
+    //fine tune
     fineTuneParam.setSliderStyle(Slider::SliderStyle::Rotary);
     fineTuneParam.setRange(-100.0f, 100.0f);
     fineTuneParam.setValue(0.0f);
@@ -79,16 +81,32 @@ SquareSynthAudioProcessorEditor::SquareSynthAudioProcessorEditor (SquareSynthAud
     
     addAndMakeVisible(&fineTuneParam);
     
+    //====================================================================
+    
+    //coures tune
+    
+    couresTuneParam.setSliderStyle(Slider::SliderStyle::Rotary);
+    couresTuneParam.setRange(-24.0f, 24.0f);
+    couresTuneParam.setValue(0.0f);
+    couresTuneParam.setTextBoxStyle(Slider::TextBoxBelow, true, 20.0, 10.0);
+    couresTuneParam.setSliderStyle(Slider::RotaryVerticalDrag);
+
+    addAndMakeVisible(&couresTuneParam);
+
     //===============================================================
     attackState = std::make_unique< AudioProcessorValueTreeState::SliderAttachment>(processor.state, "attack", attackParam);
     decayState = std::make_unique< AudioProcessorValueTreeState::SliderAttachment>(processor.state, "decay", decayParam);
     sustainState = std::make_unique< AudioProcessorValueTreeState::SliderAttachment>(processor.state, "sustain", sustainParam);
     releaseState = std::make_unique< AudioProcessorValueTreeState::SliderAttachment>(processor.state, "release", releaseParam);
     
+    
     oscSelectState = std::make_unique<AudioProcessorValueTreeState::ComboBoxAttachment>(processor.state, "wavetype", oscSelect);
     
     
+    
     fineTuneState = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.state, "fineTune1", fineTuneParam);
+    
+    courseTuneState = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.state, "courseTune1", couresTuneParam);
     
     
 }
@@ -121,4 +139,6 @@ void SquareSynthAudioProcessorEditor::resized()
     oscSelect.setBounds(0, 0, 50, 50);
     
     fineTuneParam.setBounds(50, 0, 50, 50);
+    
+    couresTuneParam.setBounds(100, 0, 50, 50);
 }

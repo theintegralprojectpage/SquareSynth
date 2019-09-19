@@ -69,13 +69,17 @@ class SquareSynthVoice : public SynthesiserVoice
     }
     void getFineTune(float* oscNum)
     {
-        fineTune1 =  (int)*oscNum;
-        DBG("fineTune" << fineTune1);
+        fineTune1 = (int)*oscNum / 10;
+        //DBG("fineTune" << fineTune1);
     }
     
-    int getCourseTune(float oscNum)
+    void getCourseTune(float* oscNum)
     {
-        return (oscNum);
+        courseTune1 = (int)*oscNum / 10;
+//        double deBug = inFrequencyMIDI + fineTune1 + courseTune1;
+//        DBG("Debug" << deBug);
+        //have to fix course b/c it different in serum!
+        //TO DO add semi Tone
     }
 
 	void controllerMoved(int controllerNumber, int newControllerValue)
@@ -110,17 +114,17 @@ class SquareSynthVoice : public SynthesiserVoice
 		switch (oscNum)
 		{
 		  case 0:
-              return osc1.sinewave(inFrequencyMIDI + fineTune1 + getCourseTune(oscNum));
+              return osc1.sinewave(inFrequencyMIDI + fineTune1 + courseTune1);
 		  case 1:
-                return osc1.square(inFrequencyMIDI + fineTune1 + getCourseTune(oscNum));
+                return osc1.square(inFrequencyMIDI + fineTune1 + courseTune1);
 		  case 2:
-			  return osc1.triangle(inFrequencyMIDI + fineTune1 + getCourseTune(oscNum));
+			  return osc1.triangle(inFrequencyMIDI + fineTune1 + courseTune1);
 		  case 3:
-			  return osc1.saw(inFrequencyMIDI + fineTune1 + getCourseTune(oscNum));
+			  return osc1.saw(inFrequencyMIDI + fineTune1 + courseTune1);
 		  default:
-			  return osc1.sinewave(inFrequencyMIDI + fineTune1 + getCourseTune(oscNum));
+			  return osc1.sinewave(inFrequencyMIDI + fineTune1 + courseTune1);
 		}
-        DBG("oscNum: " << oscNum);
+        
 	}
 
 //    void getFineTune(float* oscNum)
@@ -155,7 +159,9 @@ class SquareSynthVoice : public SynthesiserVoice
     maxiEnv masterEnvelope;
     double inFrequencyMIDI;
     int inVelocityMIDI;
-    float fineTune1;
+    double fineTune1;
+    double courseTune1;
+
 //    double level;
     
     

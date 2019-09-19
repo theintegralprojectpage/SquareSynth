@@ -61,6 +61,10 @@ public:
     AudioProcessorValueTreeState state;
     
     float attackTime;
+    float decayTime;
+    float sustainTime;
+    float releaseTime;
+    float fineTuneTime;
 private:
 	//AudioProcessorValueTreeState state;
     //==============================================================================

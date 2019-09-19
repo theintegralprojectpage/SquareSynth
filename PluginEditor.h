@@ -48,4 +48,5 @@ public:
     std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> sustainState;
     std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> releaseState;
     std::unique_ptr <AudioProcessorValueTreeState::ComboBoxAttachment> oscSelectState;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> fineTuneState;
 };

@@ -59,13 +59,23 @@ class SquareSynthVoice : public SynthesiserVoice
         masterEnvelope.setDecay((double)*decay);
         masterEnvelope.setSustain((double)*sustain);
         masterEnvelope.setRelease((double)*release);
-        DBG("Attack: " << *attack);
-        DBG("decay: " << *decay);
-        DBG("sustain: " << *sustain);
-        DBG("release: " << *release);
+//        DBG("Attack: " << *attack);
+//        DBG("decay: " << *decay);
+//        DBG("sustain: " << *sustain);
+//        DBG("release: " << *release);
 
         
 
+    }
+    void getFineTune(float* oscNum)
+    {
+        fineTune1 =  (double)*oscNum;
+        DBG("fineTune" << fineTune1);
+    }
+    
+    int getCourseTune(int oscNum)
+    {
+        return (oscNum);
     }
 
 	void controllerMoved(int controllerNumber, int newControllerValue)
@@ -100,28 +110,28 @@ class SquareSynthVoice : public SynthesiserVoice
 		switch (oscNum)
 		{
 		  case 0:
-              return osc1.sinewave(inFrequencyMIDI + getFineTune(oscNum) + getCourseTune(oscNum));
+              return osc1.sinewave(inFrequencyMIDI + fineTune1 + getCourseTune(oscNum));
 		  case 1:
-			  return osc1.square(inFrequencyMIDI + getFineTune(oscNum) + getCourseTune(oscNum));
+                return osc1.square(inFrequencyMIDI + fineTune1 + getCourseTune(oscNum));
 		  case 2:
-			  return osc1.triangle(inFrequencyMIDI + getFineTune(oscNum) + getCourseTune(oscNum));
+			  return osc1.triangle(inFrequencyMIDI + fineTune1 + getCourseTune(oscNum));
 		  case 3:
-			  return osc1.saw(inFrequencyMIDI + getFineTune(oscNum) + getCourseTune(oscNum));
+			  return osc1.saw(inFrequencyMIDI + fineTune1 + getCourseTune(oscNum));
 		  default:
-			  return osc1.sinewave(inFrequencyMIDI + getFineTune(oscNum) + getCourseTune(oscNum));
+			  return osc1.sinewave(inFrequencyMIDI + fineTune1 + getCourseTune(oscNum));
 		}
         DBG("oscNum: " << oscNum);
 	}
 
-	int getFineTune(int oscNum)
-	{
-		return oscNum;
-	}
-
-	int getCourseTune(int oscNum)
-	{
-		return (oscNum);
-	}
+//    void getFineTune(float* oscNum)
+//    {
+//        fineTune1 =  *oscNum;
+//    }
+//
+//    int getCourseTune(int oscNum)
+//    {
+//        return (oscNum);
+//    }
 
 	void renderNextBlock(AudioBuffer<float> &outputBuffer, int startSample, int numSamples)
 	{
@@ -145,6 +155,7 @@ class SquareSynthVoice : public SynthesiserVoice
     maxiEnv masterEnvelope;
     double inFrequencyMIDI;
     int inVelocityMIDI;
+    float fineTune1;
 //    double level;
     
     

@@ -70,6 +70,14 @@ SquareSynthAudioProcessorEditor::SquareSynthAudioProcessorEditor (SquareSynthAud
     
     addAndMakeVisible(&oscSelect);
     
+    //================================================================
+    fineTuneParam.setSliderStyle(Slider::SliderStyle::Rotary);
+    fineTuneParam.setRange(0.0f, 200.0f);
+    fineTuneParam.setValue(0.0f);
+    fineTuneParam.setTextBoxStyle(Slider::TextBoxBelow, true, 20.0, 10.0);
+    
+    addAndMakeVisible(&fineTuneParam);
+    
     //===============================================================
     attackState = std::make_unique< AudioProcessorValueTreeState::SliderAttachment>(processor.state, "attack", attackParam);
     decayState = std::make_unique< AudioProcessorValueTreeState::SliderAttachment>(processor.state, "decay", decayParam);
@@ -105,4 +113,6 @@ void SquareSynthAudioProcessorEditor::resized()
     releaseParam.setBounds(128, 50, 40, 100);
     
     oscSelect.setBounds(0, 0, 50, 50);
+    
+    fineTuneParam.setBounds(50, 0, 50, 50);
 }

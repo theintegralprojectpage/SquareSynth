@@ -36,6 +36,9 @@ private:
     Slider sustainParam;
     Slider releaseParam;
     
+    Slider fineTuneParam;
+    Slider couresTuneParam;
+    
     ComboBox oscSelect;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SquareSynthAudioProcessorEditor)

@@ -278,7 +278,7 @@ AudioProcessorValueTreeState::ParameterLayout SquareSynthAudioProcessor::createP
     //    params.push_back(AudioParameterFloat("fineTune3", "fineTune3", NormalisableRange<float>(-200, 200), 0));
     //    params.push_back(AudioParameterFloat("fineTune4", "fineTune4", NormalisableRange<float>(-200, 200), 0));
     
-    params.push_back(std::make_unique<AudioParameterFloat>("courseTune1", "courseTune1", -24, 24, 0));
+    params.push_back(std::make_unique<AudioParameterFloat>("courseTune1", "courseTune1", -64, 64, 0));
     //    params.push_back(AudioParameterInt("courseTune2", "courseTune2", -24, 24, 0));
     //    params.push_back(AudioParameterInt("courseTune3", "courseTune3", -24, 24, 0));
     //    params.push_back(AudioParameterInt("courseTune4", "courseTune4", -24, 24, 0));

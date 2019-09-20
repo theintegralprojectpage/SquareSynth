@@ -75,7 +75,7 @@ class SquareSynthVoice : public SynthesiserVoice
     
     void getCourseTune(float* oscNum)
     {
-        courseTune1 = (int)*oscNum / 10;
+        courseTune1 = *oscNum   * 12.0;
 //        double deBug = inFrequencyMIDI + fineTune1 + courseTune1;
 //        DBG("Debug" << deBug);
         //have to fix course b/c it different in serum!
@@ -105,7 +105,10 @@ class SquareSynthVoice : public SynthesiserVoice
 	float renderOsc(int oscNum)
 	{
 		//TODO add the rest of processing chain, including a phase dial, gain manipulations, and filter
-		return masterEnvelope.adsr((double)getWaveForm(oscNum), masterEnvelope.trigger);
+        
+        
+        return masterEnvelope.adsr((double)getWaveForm(oscNum), masterEnvelope.trigger);
+        
 	}
 
 	double getWaveForm(int oscNum)
@@ -116,7 +119,7 @@ class SquareSynthVoice : public SynthesiserVoice
 		  case 0:
               return osc1.sinewave(inFrequencyMIDI + fineTune1 + courseTune1);
 		  case 1:
-                return osc1.square(inFrequencyMIDI + fineTune1 + courseTune1);
+              return osc1.square(inFrequencyMIDI + fineTune1 + courseTune1);
 		  case 2:
 			  return osc1.triangle(inFrequencyMIDI + fineTune1 + courseTune1);
 		  case 3:
@@ -126,7 +129,8 @@ class SquareSynthVoice : public SynthesiserVoice
 		}
         
 	}
-
+        
+    
 //    void getFineTune(float* oscNum)
 //    {
 //        fineTune1 =  *oscNum;

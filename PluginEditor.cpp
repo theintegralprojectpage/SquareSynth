@@ -86,7 +86,7 @@ SquareSynthAudioProcessorEditor::SquareSynthAudioProcessorEditor (SquareSynthAud
     //coures tune
     
     couresTuneParam.setSliderStyle(Slider::SliderStyle::Rotary);
-    couresTuneParam.setRange(-24.0f, 24.0f);
+    couresTuneParam.setRange(-64.0, 64.0f);
     couresTuneParam.setValue(0.0f);
     couresTuneParam.setTextBoxStyle(Slider::TextBoxBelow, true, 20.0, 10.0);
     couresTuneParam.setSliderStyle(Slider::RotaryVerticalDrag);

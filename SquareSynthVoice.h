@@ -14,6 +14,7 @@
 #include <string>
 #include "maximilian.h"
 #include "SquareSynthSound.h"
+#include "math.h"
 
 class SquareSynthVoice : public SynthesiserVoice
 {
@@ -28,8 +29,11 @@ class SquareSynthVoice : public SynthesiserVoice
 	{
 		masterEnvelope.trigger = 1;
 		inFrequencyMIDI = MidiMessage::getMidiNoteInHertz(midiNoteNumber);
+        midi = midiNoteNumber;
 		inVelocityMIDI = velocity;
-        DBG("level: " << inVelocityMIDI);
+    
+        //DBG("level: " << inVelocityMIDI);
+        
 	}
 
 	void stopNote(float velocity, bool allowTailOff)
@@ -75,9 +79,10 @@ class SquareSynthVoice : public SynthesiserVoice
     
     void getCourseTune(float* oscNum)
     {
-        courseTune1 = *oscNum   * 12.0;
+//        double semiTone = pow(2.0, 1/12.0);
+        courseTune1 = inFrequencyMIDI  * pow(semiTone, *oscNum);
 //        double deBug = inFrequencyMIDI + fineTune1 + courseTune1;
-//        DBG("Debug" << deBug);
+      DBG("Debug" << courseTune1);
         //have to fix course b/c it different in serum!
         //TO DO add semi Tone
     }
@@ -117,15 +122,15 @@ class SquareSynthVoice : public SynthesiserVoice
 		switch (oscNum)
 		{
 		  case 0:
-              return osc1.sinewave(inFrequencyMIDI + fineTune1 + courseTune1);
+              return osc1.sinewave(courseTune1 + fineTune1);
 		  case 1:
-              return osc1.square(inFrequencyMIDI + fineTune1 + courseTune1);
+              return osc1.square(courseTune1 + fineTune1);
 		  case 2:
-			  return osc1.triangle(inFrequencyMIDI + fineTune1 + courseTune1);
+			  return osc1.triangle(courseTune1 + fineTune1);
 		  case 3:
-			  return osc1.saw(inFrequencyMIDI + fineTune1 + courseTune1);
+			  return osc1.saw(courseTune1 + fineTune1);
 		  default:
-			  return osc1.sinewave(inFrequencyMIDI + fineTune1 + courseTune1);
+			  return osc1.sinewave(courseTune1 + fineTune1);
 		}
         
 	}
@@ -165,7 +170,10 @@ class SquareSynthVoice : public SynthesiserVoice
     int inVelocityMIDI;
     double fineTune1;
     double courseTune1;
-
+    int midi;
+    double middleC = 220.0;
+    double semiTone = pow(2.0, 1/12.0);
+    double c0;
 //    double level;
     
     

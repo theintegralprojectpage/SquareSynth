@@ -55,7 +55,11 @@ SquareSynthAudioProcessor::SquareSynthAudioProcessor()
                        ),
 
 state(*this, nullptr, "PARAMS", createParameterLayout()),
-attackTime(0.1f)
+attackTime(0.1f),
+decayTime(500.0f),
+sustainTime(0.8f),
+releaseTime(0.1f),
+fineTuneTime(0.0f)
 
 
 
@@ -214,6 +218,10 @@ void SquareSynthAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBu
 //
             myVoice->getOscType(state.getRawParameterValue("wavetype"));
             
+            myVoice->getFineTune(state.getRawParameterValue("fineTune1"));
+            
+            myVoice->getCourseTune(state.getRawParameterValue("courseTune1"));
+            
 //            myVoice->getFilterParams(tree.getRawParameterValue("filtercutoff"),
 //                                     tree.getRawParameterValue("filterres"));
         }
@@ -265,12 +273,12 @@ AudioProcessorValueTreeState::ParameterLayout SquareSynthAudioProcessor::createP
     
     
     
-    params.push_back(std::make_unique<AudioParameterFloat>("fineTune1", "fineTune1", NormalisableRange<float>(-200, 200), 0));
+    params.push_back(std::make_unique<AudioParameterFloat>("fineTune1", "fineTune1", NormalisableRange<float>(-100, 100), 0));
     //    params.push_back(AudioParameterFloat("fineTune2", "fineTune2", NormalisableRange<float>(-200, 200), 0));
     //    params.push_back(AudioParameterFloat("fineTune3", "fineTune3", NormalisableRange<float>(-200, 200), 0));
     //    params.push_back(AudioParameterFloat("fineTune4", "fineTune4", NormalisableRange<float>(-200, 200), 0));
     
-    params.push_back(std::make_unique<AudioParameterFloat>("courseTune1", "courseTune1", -24, 24, 0));
+    params.push_back(std::make_unique<AudioParameterFloat>("courseTune1", "courseTune1", -64, 64, 0));
     //    params.push_back(AudioParameterInt("courseTune2", "courseTune2", -24, 24, 0));
     //    params.push_back(AudioParameterInt("courseTune3", "courseTune3", -24, 24, 0));
     //    params.push_back(AudioParameterInt("courseTune4", "courseTune4", -24, 24, 0));

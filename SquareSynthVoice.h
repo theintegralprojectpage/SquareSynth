@@ -14,6 +14,7 @@
 #include <string>
 #include "maximilian.h"
 #include "SquareSynthSound.h"
+#include "math.h"
 
 class SquareSynthVoice : public SynthesiserVoice
 {
@@ -28,8 +29,11 @@ class SquareSynthVoice : public SynthesiserVoice
 	{
 		masterEnvelope.trigger = 1;
 		inFrequencyMIDI = MidiMessage::getMidiNoteInHertz(midiNoteNumber);
+        midi = midiNoteNumber;
 		inVelocityMIDI = velocity;
-        DBG("level: " << inVelocityMIDI);
+    
+        //DBG("level: " << inVelocityMIDI);
+        
 	}
 
 	void stopNote(float velocity, bool allowTailOff)
@@ -59,13 +63,28 @@ class SquareSynthVoice : public SynthesiserVoice
         masterEnvelope.setDecay((double)*decay);
         masterEnvelope.setSustain((double)*sustain);
         masterEnvelope.setRelease((double)*release);
-        DBG("Attack: " << *attack);
-        DBG("decay: " << *decay);
-        DBG("sustain: " << *sustain);
-        DBG("release: " << *release);
+//        DBG("Attack: " << *attack);
+//        DBG("decay: " << *decay);
+//        DBG("sustain: " << *sustain);
+//        DBG("release: " << *release);
 
         
 
+    }
+    void getFineTune(float* oscNum)
+    {
+        fineTune1 = (int)*oscNum / 10;
+        //DBG("fineTune" << fineTune1);
+    }
+    
+    void getCourseTune(float* oscNum)
+    {
+//        double semiTone = pow(2.0, 1/12.0);
+        courseTune1 = inFrequencyMIDI  * pow(semiTone, *oscNum);
+//        double deBug = inFrequencyMIDI + fineTune1 + courseTune1;
+      DBG("Debug" << courseTune1);
+        //have to fix course b/c it different in serum!
+        //TO DO add semi Tone
     }
 
 	void controllerMoved(int controllerNumber, int newControllerValue)
@@ -91,7 +110,10 @@ class SquareSynthVoice : public SynthesiserVoice
 	float renderOsc(int oscNum)
 	{
 		//TODO add the rest of processing chain, including a phase dial, gain manipulations, and filter
-		return masterEnvelope.adsr((double)getWaveForm(oscNum), masterEnvelope.trigger);
+        
+        
+        return masterEnvelope.adsr((double)getWaveForm(oscNum), masterEnvelope.trigger);
+        
 	}
 
 	double getWaveForm(int oscNum)
@@ -100,28 +122,29 @@ class SquareSynthVoice : public SynthesiserVoice
 		switch (oscNum)
 		{
 		  case 0:
-              return osc1.sinewave(inFrequencyMIDI + getFineTune(oscNum) + getCourseTune(oscNum));
+              return osc1.sinewave(courseTune1 + fineTune1);
 		  case 1:
-			  return osc1.square(inFrequencyMIDI + getFineTune(oscNum) + getCourseTune(oscNum));
+              return osc1.square(courseTune1 + fineTune1);
 		  case 2:
-			  return osc1.triangle(inFrequencyMIDI + getFineTune(oscNum) + getCourseTune(oscNum));
+			  return osc1.triangle(courseTune1 + fineTune1);
 		  case 3:
-			  return osc1.saw(inFrequencyMIDI + getFineTune(oscNum) + getCourseTune(oscNum));
+			  return osc1.saw(courseTune1 + fineTune1);
 		  default:
-			  return osc1.sinewave(inFrequencyMIDI + getFineTune(oscNum) + getCourseTune(oscNum));
+			  return osc1.sinewave(courseTune1 + fineTune1);
 		}
-        DBG("oscNum: " << oscNum);
+        
 	}
-
-	int getFineTune(int oscNum)
-	{
-		return oscNum;
-	}
-
-	int getCourseTune(int oscNum)
-	{
-		return (oscNum);
-	}
+        
+    
+//    void getFineTune(float* oscNum)
+//    {
+//        fineTune1 =  *oscNum;
+//    }
+//
+//    int getCourseTune(int oscNum)
+//    {
+//        return (oscNum);
+//    }
 
 	void renderNextBlock(AudioBuffer<float> &outputBuffer, int startSample, int numSamples)
 	{
@@ -145,6 +168,12 @@ class SquareSynthVoice : public SynthesiserVoice
     maxiEnv masterEnvelope;
     double inFrequencyMIDI;
     int inVelocityMIDI;
+    double fineTune1;
+    double courseTune1;
+    int midi;
+    double middleC = 220.0;
+    double semiTone = pow(2.0, 1/12.0);
+    double c0;
 //    double level;
     
     

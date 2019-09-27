@@ -13,11 +13,15 @@
 
 //==============================================================================
 SquareSynthAudioProcessorEditor::SquareSynthAudioProcessorEditor (SquareSynthAudioProcessor& p)
-    : AudioProcessorEditor (&p), processor (p)
+: AudioProcessorEditor (&p), processor (p), oscGui(p)
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    setSize (200, 200);
+    setSize (400, 400);
+    
+    
+    addAndMakeVisible(&oscGui);
+    
     //===============================================================
     //attack gui
     attackParam.setSliderStyle(Slider::SliderStyle::LinearVertical);
@@ -62,36 +66,36 @@ SquareSynthAudioProcessorEditor::SquareSynthAudioProcessorEditor (SquareSynthAud
     
     //===============================================================
     
-    //osc1 select combobox gui
-    oscSelect.addItem("Sine", 1);
-    oscSelect.addItem("Square", 2);
-    oscSelect.addItem("Triangle", 3);
-    oscSelect.addItem("Saw", 4);
-    
-    addAndMakeVisible(&oscSelect);
-    
-    //================================================================
-    
-    //fine tune
-    fineTuneParam.setSliderStyle(Slider::SliderStyle::Rotary);
-    fineTuneParam.setRange(-100.0f, 100.0f);
-    fineTuneParam.setValue(0.0f);
-    fineTuneParam.setTextBoxStyle(Slider::TextBoxBelow, true, 20.0, 10.0);
-    fineTuneParam.setSliderStyle(Slider::RotaryVerticalDrag);
-    
-    addAndMakeVisible(&fineTuneParam);
-    
-    //====================================================================
-    
-    //coures tune
-    
-    couresTuneParam.setSliderStyle(Slider::SliderStyle::Rotary);
-    couresTuneParam.setRange(-64.0, 64.0f);
-    couresTuneParam.setValue(0.0f);
-    couresTuneParam.setTextBoxStyle(Slider::TextBoxBelow, true, 20.0, 10.0);
-    couresTuneParam.setSliderStyle(Slider::RotaryVerticalDrag);
-
-    addAndMakeVisible(&couresTuneParam);
+//    //osc1 select combobox gui
+//    oscSelect.addItem("Sine", 1);
+//    oscSelect.addItem("Square", 2);
+//    oscSelect.addItem("Triangle", 3);
+//    oscSelect.addItem("Saw", 4);
+//
+//    addAndMakeVisible(&oscSelect);
+//
+//    //================================================================
+//
+//    //fine tune
+//    fineTuneParam.setSliderStyle(Slider::SliderStyle::Rotary);
+//    fineTuneParam.setRange(-100.0f, 100.0f);
+//    fineTuneParam.setValue(0.0f);
+//    fineTuneParam.setTextBoxStyle(Slider::TextBoxBelow, true, 20.0, 10.0);
+//    fineTuneParam.setSliderStyle(Slider::RotaryVerticalDrag);
+//
+//    addAndMakeVisible(&fineTuneParam);
+//
+//    //====================================================================
+//
+//    //coures tune
+//
+//    couresTuneParam.setSliderStyle(Slider::SliderStyle::Rotary);
+//    couresTuneParam.setRange(-64.0, 64.0f);
+//    couresTuneParam.setValue(0.0f);
+//    couresTuneParam.setTextBoxStyle(Slider::TextBoxBelow, true, 20.0, 10.0);
+//    couresTuneParam.setSliderStyle(Slider::RotaryVerticalDrag);
+//
+//    addAndMakeVisible(&couresTuneParam);
 
     //===============================================================
     attackState = std::make_unique< AudioProcessorValueTreeState::SliderAttachment>(processor.state, "attack", attackParam);
@@ -100,13 +104,13 @@ SquareSynthAudioProcessorEditor::SquareSynthAudioProcessorEditor (SquareSynthAud
     releaseState = std::make_unique< AudioProcessorValueTreeState::SliderAttachment>(processor.state, "release", releaseParam);
     
     
-    oscSelectState = std::make_unique<AudioProcessorValueTreeState::ComboBoxAttachment>(processor.state, "wavetype", oscSelect);
-    
-    
-    
-    fineTuneState = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.state, "fineTune1", fineTuneParam);
-    
-    courseTuneState = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.state, "courseTune1", couresTuneParam);
+//    oscSelectState = std::make_unique<AudioProcessorValueTreeState::ComboBoxAttachment>(processor.state, "wavetype", oscSelect);
+//    
+//    
+//    
+//    fineTuneState = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.state, "fineTune1", fineTuneParam);
+//    
+//    courseTuneState = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(processor.state, "courseTune1", couresTuneParam);
     
     
 }
@@ -130,15 +134,24 @@ void SquareSynthAudioProcessorEditor::resized()
 {
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
-    Rectangle<int> area = getBounds().reduced(40);
+   // Rectangle<int> area = getBounds().reduced(40);
     attackParam.setBounds(53, 50, 40, 100);
     decayParam.setBounds(77, 50, 40, 100);
     sustainParam.setBounds(103, 50, 40, 100);
     releaseParam.setBounds(128, 50, 40, 100);
     
-    oscSelect.setBounds(0, 0, 50, 50);
+    Rectangle<int> area = getLocalBounds();
     
-    fineTuneParam.setBounds(50, 0, 50, 50);
+    const int componentWidth = 200;
+    const int componentHeight = 200;
+//    const int newComponentWidth = 300;
+//    const int newComponentHeight = 300;
     
-    couresTuneParam.setBounds(100, 0, 50, 50);
+    oscGui.setBounds(area.removeFromLeft(componentWidth).removeFromTop(componentHeight));
+    
+//    oscSelect.setBounds(0, 0, 50, 50);
+//    
+//    fineTuneParam.setBounds(50, 0, 50, 50);
+//    
+//    couresTuneParam.setBounds(100, 0, 50, 50);
 }

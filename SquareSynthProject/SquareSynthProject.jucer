@@ -35,17 +35,20 @@
         <FILE id="yeO4ox" name="stb_vorbis.c" compile="1" resource="0" file="../../../Development/Libraries/Maximilian/stb_vorbis.c"/>
         <FILE id="yjCq9O" name="stb_vorbis.h" compile="0" resource="0" file="../../../Development/Libraries/Maximilian/stb_vorbis.h"/>
       </GROUP>
+      <FILE id="gWhBoB" name="OscillatorGui.cpp" compile="1" resource="0"
+            file="../OscillatorGui.cpp"/>
+      <FILE id="f4tkJo" name="OscillatorGui.h" compile="0" resource="0" file="../OscillatorGui.h"/>
       <FILE id="qxZKVZ" name="SquareSynthSound.h" compile="0" resource="0"
             file="../SquareSynthSound.h"/>
       <FILE id="ujwOE3" name="SquareSynthVoice.h" compile="0" resource="0"
             file="../SquareSynthVoice.h"/>
-      <FILE id="BrKQXI" name="PluginEditor.h" compile="0" resource="0" file="../PluginEditor.h"/>
       <FILE id="nZdlKq" name="PluginProcessor.cpp" compile="1" resource="0"
             file="../PluginProcessor.cpp"/>
-      <FILE id="MS7jSs" name="PluginEditor.cpp" compile="1" resource="0"
-            file="../PluginEditor.cpp"/>
       <FILE id="vh3U6U" name="PluginProcessor.h" compile="0" resource="0"
             file="../PluginProcessor.h"/>
+      <FILE id="MS7jSs" name="PluginEditor.cpp" compile="1" resource="0"
+            file="../PluginEditor.cpp"/>
+      <FILE id="BrKQXI" name="PluginEditor.h" compile="0" resource="0" file="../PluginEditor.h"/>
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>

@@ -121,6 +121,10 @@
 			isa = PBXBuildFile;
 			fileRef = 77498523876380C675F5DDB0;
 		};
+		515124859835409ABAA96E2C = {
+			isa = PBXBuildFile;
+			fileRef = D96DBB8C1F9CAA12F4910E89;
+		};
 		9546624F2295D86D6CF4C3FA = {
 			isa = PBXBuildFile;
 			fileRef = 2943CFD5FAFDBB33C977C019;
@@ -626,6 +630,13 @@
 			path = "../../JuceLibraryCode/include_juce_core.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
+		9AF86E89AEF6DEF999EA3513 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.objcpp;
+			name = "include_juce_audio_devices.mm";
+			path = "../../JuceLibraryCode/include_juce_audio_devices.mm";
+			sourceTree = "SOURCE_ROOT";
+		};
 		9C2AE5F152D90AE206C0F46E = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.objcpp;
@@ -687,13 +698,6 @@
 			lastKnownFileType = sourcecode.c.h;
 			name = maxiMFCC.h;
 			path = ../../../../../Development/Libraries/Maximilian/libs/maxiMFCC.h;
-			sourceTree = "SOURCE_ROOT";
-		};
-		9AF86E89AEF6DEF999EA3513 = {
-			isa = PBXFileReference;
-			lastKnownFileType = sourcecode.cpp.objcpp;
-			name = "include_juce_audio_devices.mm";
-			path = "../../JuceLibraryCode/include_juce_audio_devices.mm";
 			sourceTree = "SOURCE_ROOT";
 		};
 		ACEB8A0F142FD83CB6FDCCC2 = {
@@ -759,6 +763,13 @@
 			path = "/Applications/JUCE/modules/juce_audio_formats";
 			sourceTree = "<absolute>";
 		};
+		C6230FF86B2869316AF992EB = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = OscillatorGui.h;
+			path = ../../../OscillatorGui.h;
+			sourceTree = "SOURCE_ROOT";
+		};
 		C9783D0ED947B8FDBF302CD2 = {
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
@@ -793,6 +804,13 @@
 			name = CoreAudio.framework;
 			path = System/Library/Frameworks/CoreAudio.framework;
 			sourceTree = SDKROOT;
+		};
+		D96DBB8C1F9CAA12F4910E89 = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.cpp.cpp;
+			name = OscillatorGui.cpp;
+			path = ../../../OscillatorGui.cpp;
+			sourceTree = "SOURCE_ROOT";
 		};
 		DAC51328F4D9A5AE22C2E884 = {
 			isa = PBXFileReference;
@@ -910,12 +928,14 @@
 			isa = PBXGroup;
 			children = (
 				BC797DDF0FD2E1F568362F13,
+				D96DBB8C1F9CAA12F4910E89,
+				C6230FF86B2869316AF992EB,
 				B7C8630B50E65AC37EC1798D,
 				1CA2A63170691C46EE3E2C10,
-				4F6950933592129B71DE316E,
 				2943CFD5FAFDBB33C977C019,
-				15FCF4D0ABA505E848A45C9D,
 				52BF53A73F7AF48241825354,
+				15FCF4D0ABA505E848A45C9D,
+				4F6950933592129B71DE316E,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -1796,6 +1816,7 @@
 				A0E0CAFB60814B8032CC4676,
 				4F5551151E548DB29B906C64,
 				DFE5742977853631667B23A9,
+				515124859835409ABAA96E2C,
 				9546624F2295D86D6CF4C3FA,
 				C103A326385337FE80A9C2C9,
 				C2312396C139608759E11F00,

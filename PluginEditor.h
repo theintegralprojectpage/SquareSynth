@@ -12,7 +12,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "PluginProcessor.h"
-
+#include "OscillatorGui.h"
 //==============================================================================
 /**
 */
@@ -35,11 +35,11 @@ private:
     Slider decayParam;
     Slider sustainParam;
     Slider releaseParam;
-    
-    Slider fineTuneParam;
-    Slider couresTuneParam;
-    
-    ComboBox oscSelect;
+    OscillatorGui oscGui;
+//    Slider fineTuneParam;
+//    Slider couresTuneParam;
+//    
+//    ComboBox oscSelect;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SquareSynthAudioProcessorEditor)
 public:
@@ -47,8 +47,8 @@ public:
     std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> decayState;
     std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> sustainState;
     std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> releaseState;
-    std::unique_ptr <AudioProcessorValueTreeState::ComboBoxAttachment> oscSelectState;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> fineTuneState;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> courseTuneState;
+//    std::unique_ptr <AudioProcessorValueTreeState::ComboBoxAttachment> oscSelectState;
+//    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> fineTuneState;
+//    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> courseTuneState;
 
 };

@@ -63,10 +63,6 @@ class SquareSynthVoice : public SynthesiserVoice
         masterEnvelope.setDecay((double)*decay);
         masterEnvelope.setSustain((double)*sustain);
         masterEnvelope.setRelease((double)*release);
-//        DBG("Attack: " << *attack);
-//        DBG("decay: " << *decay);
-//        DBG("sustain: " << *sustain);
-//        DBG("release: " << *release);
 
         
 
@@ -79,12 +75,10 @@ class SquareSynthVoice : public SynthesiserVoice
     
     void getCourseTune(float* oscNum)
     {
-//        double semiTone = pow(2.0, 1/12.0);
+
         courseTune1 = inFrequencyMIDI  * pow(semiTone, *oscNum);
-//        double deBug = inFrequencyMIDI + fineTune1 + courseTune1;
-      DBG("Debug" << courseTune1);
-        //have to fix course b/c it different in serum!
-        //TO DO add semi Tone
+
+      
     }
 
 	void controllerMoved(int controllerNumber, int newControllerValue)

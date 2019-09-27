@@ -130,15 +130,7 @@ class SquareSynthVoice : public SynthesiserVoice
 	}
         
     
-//    void getFineTune(float* oscNum)
-//    {
-//        fineTune1 =  *oscNum;
-//    }
-//
-//    int getCourseTune(int oscNum)
-//    {
-//        return (oscNum);
-//    }
+
 
 	void renderNextBlock(AudioBuffer<float> &outputBuffer, int startSample, int numSamples)
 	{

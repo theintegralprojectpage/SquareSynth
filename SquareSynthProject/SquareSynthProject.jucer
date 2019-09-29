@@ -35,6 +35,10 @@
         <FILE id="yeO4ox" name="stb_vorbis.c" compile="1" resource="0" file="../../../Development/Libraries/Maximilian/stb_vorbis.c"/>
         <FILE id="yjCq9O" name="stb_vorbis.h" compile="0" resource="0" file="../../../Development/Libraries/Maximilian/stb_vorbis.h"/>
       </GROUP>
+      <FILE id="t0Miup" name="MasterEnvelopeGui.cpp" compile="1" resource="0"
+            file="../MasterEnvelopeGui.cpp"/>
+      <FILE id="xtqkGP" name="MasterEnvelopeGui.h" compile="0" resource="0"
+            file="../MasterEnvelopeGui.h"/>
       <FILE id="gWhBoB" name="OscillatorGui.cpp" compile="1" resource="0"
             file="../OscillatorGui.cpp"/>
       <FILE id="f4tkJo" name="OscillatorGui.h" compile="0" resource="0" file="../OscillatorGui.h"/>
